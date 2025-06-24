@@ -29,7 +29,20 @@
 
 - Licensed under `LGPL 3.0` by default, some packages licensed by `GPL v3.0` effectively
 
-### 2. Installation
+### 2. Known issues
+
+#### Android:
+```
+...
+Running Gradle task 'assembleDebug'...
+*** DOWNLOADING AAR ***
+...android/src/main/java/com/arthenica/ffmpegkit/flutter FFmpegSessionExecuteTask.java:5: error: cannot find symbol
+import com.arthenica.ffmpegkit.FFmpegKitConfig;
+...100 more lines...
+```
+The error above is going to happen during the first run only ONCE. It occurs because downloaded `.aar` cannot be found after Gradle assemble task. Sadly, mentioned `.aar` cannot be bundled along with the package [because of the pub.dev package restrictions](https://dart.dev/tools/pub/publishing#prepare-your-package-for-publication) and always have to be downloaded first.
+
+### 3. Installation
 
 Add `ffmpeg_kit_flutter` as a dependency in your `pubspec.yaml file`.
 
@@ -58,29 +71,16 @@ using the following dependency format.
 
 ```yaml
 dependencies:
-  ffmpeg_kit_flutter_<package name>: 6.0.3
+    ffmpeg_kit_flutter_min:
+    git:
+      url: https://github.com/chzhhong97/ffmpeg_kit_flutter_min
+      ref: master
 ```
 
 Note that hyphens in the package name must be replaced with underscores. Additionally, do not forget to use the package
 name in the import statements if you install a package.
 
-#### 2.3 Installing LTS Releases
-
-In order to install the `LTS` variant, append `-LTS` to the version you have for the `ffmpeg_kit_flutter` dependency.
-
-```yaml
-dependencies:
-  ffmpeg_kit_flutter: 6.0.3-LTS
-```
-
-#### 2.4 LTS Releases
-
-`ffmpeg_kit_flutter` is published in two variants: `Main Release` and `LTS Release`. Both releases share the
-same source code but is built with different settings (Architectures, API Level, iOS Min SDK, etc.). Refer to the
-[LTS Releases](https://github.com/arthenica/ffmpeg-kit/wiki/LTS-Releases) wiki page to see how they differ from each
-other.
-
-#### 2.5 Platform Support
+#### 2.3 Platform Support
 
 The following table shows Android API level, iOS deployment target and macOS deployment target requirements in
 `ffmpeg_kit_flutter` releases.
@@ -89,12 +89,8 @@ The following table shows Android API level, iOS deployment target and macOS dep
 <thead>
 <tr>
 <th align="center" colspan="3">Main Release</th>
-<th align="center" colspan="3">LTS Release</th>
 </tr>
 <tr>
-<th align="center">Android<br>API Level</th>
-<th align="center">iOS Minimum<br>Deployment Target</th>
-<th align="center">macOS Minimum<br>Deployment Target</th>
 <th align="center">Android<br>API Level</th>
 <th align="center">iOS Minimum<br>Deployment Target</th>
 <th align="center">macOS Minimum<br>Deployment Target</th>
@@ -105,14 +101,11 @@ The following table shows Android API level, iOS deployment target and macOS dep
 <td align="center">24</td>
 <td align="center">12.1</td>
 <td align="center">10.15</td>
-<td align="center">16</td>
-<td align="center">10</td>
-<td align="center">10.12</td>
 </tr>
 </tbody>
 </table>
 
-### 3. Using
+### 4. Using
 
 1. Execute FFmpeg commands.
 
@@ -317,19 +310,19 @@ The following table shows Android API level, iOS deployment target and macOS dep
     FFmpegKitConfig.setFontDirectoryList(["/system/fonts", "/System/Library/Fonts", "<folder with fonts>"]);
     ```
 
-### 4. Test Application
+### 5. Test Application
 
 You can see how `FFmpegKit` is used inside an application by running `flutter` test applications developed under
 the [FFmpegKit Test](https://github.com/arthenica/ffmpeg-kit-test) project.
 
-### 5. Tips
+### 6. Tips
 
 See [Tips](https://github.com/arthenica/ffmpeg-kit/wiki/Tips) wiki page.
 
-### 6. License
+### 7. License
 
 See [License](https://github.com/arthenica/ffmpeg-kit/wiki/License) wiki page.
 
-### 7. Patents
+### 8. Patents
 
 See [Patents](https://github.com/arthenica/ffmpeg-kit/wiki/Patents) wiki page.
