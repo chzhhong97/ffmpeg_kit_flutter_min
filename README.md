@@ -1,4 +1,5 @@
 # FFmpegKit for Flutter
+## FORKED from [https://pub.dev/packages/ffmpeg_kit_flutter_min](ffmpeg_kit_flutter_min)
 
 ### 1. Features
 
